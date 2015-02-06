@@ -1,0 +1,91 @@
+#!/usr/bin/env python
+
+def input_playfield(f):
+    playfield = []
+    allowable_chars = set(".#?")
+    for line in f:
+        line = line.rstrip()
+        if playfield:
+            assert len(line) == len(playfield[0])
+        assert set(line) <= allowable_chars, set(line)
+        playfield.append(line)
+    return playfield
+
+
+def print_playfields(playfields):
+    first_playfield = playfields[0]
+    for y in xrange(0, len(first_playfield)):
+        row = [playfield[y] for playfield in playfields]
+        print '|'.join(row)
+
+
+def main(argv):
+    with open(argv[0]) as f:
+        playfield = input_playfield(f)
+
+    iters = 5
+    playfields = []
+
+    for iter in xrange(0, iters):
+        pf2 = []
+        for y in xrange(0, len(playfield)):
+            ln = ''
+            for x in xrange(0, len(playfield[y])):
+                min_alive = 0
+                max_alive = 0
+                for (dx, dy) in ((-1,-1), (-1, 0), (-1,1), (0,-1), (0,1), (1,-1), (1,0), (1,1)):
+                    nx = x + dx
+                    ny = y + dy
+                    if nx < 0 or nx >= len(playfield[y]):
+                        continue
+                    if ny < 0 or ny >= len(playfield):
+                        continue
+                    nbcell = playfield[ny][nx]
+                    if nbcell == '#':
+                        min_alive += 1
+                        max_alive += 1
+                    elif nbcell == '.':
+                        min_alive += 0
+                        max_alive += 0
+                    elif nbcell == '?':
+                        min_alive += 0
+                        max_alive += 1
+                
+                cell = playfield[y][x]
+                new_cell = None
+                if cell == '#':
+                    if min_alive in (2, 3) and max_alive in (2, 3):
+                        new_cell = '#'
+                    elif min_alive >= 4 or max_alive <= 1:
+                        #print "X->_ at %s,%s: min_alive = %s, max_alive = %s" % (x,y,min_alive,max_alive)
+                        new_cell = '.'
+                    else:
+                        new_cell = '?'
+                elif cell == '.':
+                    if min_alive == 3 and max_alive == 3:
+                        #print "_->X at %s,%s: min_alive = %s, max_alive = %s" % (x,y,min_alive,max_alive)
+                        new_cell = '#'
+                    elif min_alive >= 4 or max_alive <= 2:
+                        new_cell = '.'
+                    else:
+                        new_cell = '?'
+                elif cell == '?':
+                    if min_alive == 3 and max_alive == 3:
+                        new_cell = '#'
+                    elif min_alive >= 4 or max_alive <= 1:
+                        new_cell = '.'
+                    else:
+                        new_cell = '?'
+        
+                ln += new_cell
+            pf2.append(ln)
+            #print
+        playfields.append(pf2)
+        playfield = pf2
+
+    print_playfields(playfields)
+
+
+if __name__ == '__main__':
+    import sys
+    main(sys.argv[1:])
