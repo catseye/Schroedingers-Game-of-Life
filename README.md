@@ -90,6 +90,10 @@ this matter of there being two counts for each cell is a bit more than
 [ALPACA][] can express, so the automaton has simply been implemented
 from scratch in Python, in the file `script/slife` in this repository.
 
+(Note: there is also an implementation in Javascript, which can be used
+directly in your web browser, here:
+[Schrödinger's Game of Life installation at Cat's Eye Technologies][]).
+
 There is certainly *some* way to state the rules such that ALPACA could
 accept them.  However, I have not worked it out, and I believe there is a
 good chance that such an "even more closed form" would only serve to
@@ -365,6 +369,7 @@ February 7, 2015
 Reading, England, UK
 
 [powerset construction]: https://en.wikipedia.org/wiki/Powerset_construction
+[Schrödinger's Game of Life installation at Cat's Eye Technologies]: http://catseye.tc/installation/Schr%C3%B6dinger%27s_Game_of_Life
 [ALPACA]: http://catseye.tc/node/ALPACA
 [wave function]: http://en.wikipedia.org/wiki/Wave_function
 [slime mold]: http://catseye.tc/node/Jaccia
