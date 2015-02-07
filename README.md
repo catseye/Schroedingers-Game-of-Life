@@ -335,7 +335,7 @@ You give the items to your colleague, step out of the room, and close the
 door.
 
 A minute later you open it again and walk back in.  The boxes are closed
-and there is no sign of the cat.
+and there is no sign of the cat or the deathtrap.
 
 You check the environment carefully to ensure there are no hidden compartments
 and that your colleague has not eaten the cat.
