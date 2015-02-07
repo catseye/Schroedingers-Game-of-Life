@@ -324,7 +324,9 @@ of terrible doggerel I wrote back in the mid-90's:
 > But you don't suppose it's possible that  
 > The *cat* made an observation?  
 
-And here is "Schrödinger's Cat Extended Dance Mix":
+Oh, I do apologize.  And I can't bear closing on such a sour note.  So, here's
+
+### Schrödinger's Cat: Extended Dance Mix ###
 
 Carrying a live cat and a quantum boobytrap, you walk into a room, in which is
 a fellow experimenter and a table containing two open, empty boxes.
