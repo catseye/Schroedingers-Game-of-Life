@@ -1,5 +1,16 @@
 #!/usr/bin/env python
 
+try:
+    xrange = xrange
+except NameError:
+    xrange = range
+
+
+NEIGHBOURHOOD = (
+    (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)
+)
+
+
 def input_playfield(f):
     playfield = []
     allowable_chars = set(".#?")
@@ -16,7 +27,7 @@ def print_playfields(playfields):
     first_playfield = playfields[0]
     for y in xrange(0, len(first_playfield)):
         row = [playfield[y] for playfield in playfields]
-        print '|'.join(row)
+        print('|'.join(row))
 
 
 def main(argv):
@@ -33,7 +44,7 @@ def main(argv):
             for x in xrange(0, len(playfield[y])):
                 min_alive = 0
                 max_alive = 0
-                for (dx, dy) in ((-1,-1), (-1, 0), (-1,1), (0,-1), (0,1), (1,-1), (1,0), (1,1)):
+                for (dx, dy) in NEIGHBOURHOOD:
                     nx = x + dx
                     ny = y + dy
                     if nx < 0 or nx >= len(playfield[y]):
@@ -50,20 +61,18 @@ def main(argv):
                     elif nbcell == '?':
                         min_alive += 0
                         max_alive += 1
-                
+
                 cell = playfield[y][x]
                 new_cell = None
                 if cell == '#':
                     if min_alive in (2, 3) and max_alive in (2, 3):
                         new_cell = '#'
                     elif min_alive >= 4 or max_alive <= 1:
-                        #print "X->_ at %s,%s: min_alive = %s, max_alive = %s" % (x,y,min_alive,max_alive)
                         new_cell = '.'
                     else:
                         new_cell = '?'
                 elif cell == '.':
                     if min_alive == 3 and max_alive == 3:
-                        #print "_->X at %s,%s: min_alive = %s, max_alive = %s" % (x,y,min_alive,max_alive)
                         new_cell = '#'
                     elif min_alive >= 4 or max_alive <= 2:
                         new_cell = '.'
@@ -76,10 +85,9 @@ def main(argv):
                         new_cell = '.'
                     else:
                         new_cell = '?'
-        
+
                 ln += new_cell
             pf2.append(ln)
-            #print
         playfields.append(pf2)
         playfield = pf2
 
