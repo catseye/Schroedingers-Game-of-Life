@@ -108,9 +108,6 @@ Examples
 
     -> Tests for functionality "Evolve Schroedinger's Life for 5 steps"
 
-    -> Functionality "Evolve Schroedinger's Life for 5 steps"
-    -> is implemented by shell command "./script/slife %(test-body-file)"
-
 When a playfield consists solely of `.` and `#` cells, this cellular automaton
 has precisely the same behaviour as John Conway's Game of Life.  For example,
 here is a glider:

@@ -1,3 +1,5 @@
 #!/bin/sh
 
-falderal README.md
+APPLIANCES="tests/appliances/slife.md"
+
+falderal $APPLIANCES README.md
