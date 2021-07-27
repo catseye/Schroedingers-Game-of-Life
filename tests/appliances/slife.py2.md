@@ -1,0 +1,2 @@
+    -> Functionality "Evolve Schroedinger's Life for 5 steps"
+    -> is implemented by shell command "python2 ./script/slife %(test-body-file)"
