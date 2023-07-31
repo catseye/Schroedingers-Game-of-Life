@@ -20,8 +20,6 @@ function launch(prefix, container, config) {
         elem.onload = function() {
             if (++loaded != deps.length) return;
 
-            var sourceRoot = config.sourceRoot || '../../../eg/';
-
             /* --- state --- */
 
             var pf;
@@ -78,12 +76,20 @@ function launch(prefix, container, config) {
 
             var presetSelect = yoob.makeSelect(c.panel, "Preset:", []);
 
+            var getExampleProgram = function(n) {
+                for (var i = 0; i < examplePrograms.length; i++) {
+                    if (examplePrograms[i].filename === n) {
+                        return examplePrograms[i].contents;
+                    }
+                }
+                return "";
+            }
             var p = new yoob.PresetManager();
             p.init({
                 'selectElem': presetSelect,
                 'setPreset': function(n) {
                     c.clickStop(); // in case it is currently running
-                    sm.loadSourceFromURL(sourceRoot + n);
+                    sm.loadSource(getExampleProgram(n));
                     sm.onDone();
                 }
             });
