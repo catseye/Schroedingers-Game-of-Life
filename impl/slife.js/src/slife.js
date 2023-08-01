@@ -93,18 +93,9 @@ function launch(prefix, container, config) {
                     sm.onDone();
                 }
             });
-            p.add('alive-cat-alive.sgol');
-            p.add('big-demo.sgol');
-            p.add('block-of-cats.sgol');
-            p.add('cat-blinker.sgol');
-            p.add('definitely-glider.sgol');
-            p.add('fuse-with-cat.sgol');
-            p.add('glider-with-1-cat.sgol');
-            p.add('half-cat-block.sgol');
-            p.add('lone-cell.sgol');
-            p.add('maybe-glider.sgol');
-            p.add('self-healing-block.sgol');
-
+            for (var i = 0; i < examplePrograms.length; i++) {
+                p.add(examplePrograms[i].filename);
+            }
             p.select('big-demo.sgol');
         };
         document.body.appendChild(elem);
